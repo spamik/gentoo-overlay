@@ -3,8 +3,8 @@
 
 EAPI=8
 
-_PN="${PN}"
-MY_PV=$(ver_rs 3 '-nightly.')
+_PN="Ferdium-linux"
+MY_PV="${PV}"
 
 inherit desktop xdg-utils
 
@@ -16,9 +16,9 @@ SLOT="0"
 IUSE="wayland"
 KEYWORDS="-* ~amd64 ~arm ~arm64"
 SRC_URI="
-amd64? ( https://github.com/${_PN}/${_PN}-app/releases/download/v${MY_PV}/${_PN}_${MY_PV}_amd64.deb )
-arm? ( https://github.com/${_PN}/${_PN}-app/releases/download/v${MY_PV}/${_PN}_${MY_PV}_armv7l.deb )
-arm64? ( https://github.com/${_PN}/${_PN}-app/releases/download/v${MY_PV}/${_PN}_${MY_PV}_arm64.deb )"
+amd64? ( https://github.com/${PN}/${PN}-app/releases/download/v${MY_PV}/${_PN}-${MY_PV}-amd64.deb )
+arm? ( https://github.com/${PN}/${PN}-app/releases/download/v${MY_PV}/${_PN}-${MY_PV}-armv7l.deb )
+arm64? ( https://github.com/${PN}/${PN}-app/releases/download/v${MY_PV}/${_PN}-${MY_PV}-arm64.deb )"
 
 RDEPEND="
 media-libs/alsa-lib
@@ -47,43 +47,43 @@ src_prepare() {
 	bsdtar -x -f data.tar.xz
 	rm data.tar.xz control.tar.gz debian-binary
 	if use wayland; then
-		sed -E -i -e "s|Exec=/opt/${_PN^}/${_PN}|Exec=/usr/bin/${PN} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-webrtc-pipewire-capturer|" "usr/share/applications/${_PN}.desktop"
+		sed -E -i -e "s|Exec=/opt/${PN^}/${PN}|Exec=/usr/bin/${PN} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-webrtc-pipewire-capturer|" "usr/share/applications/${PN}.desktop"
 	else
-		sed -E -i -e "s|Exec=/opt/${_PN^}/${_PN}|Exec=/usr/bin/${PN}|" "usr/share/applications/${_PN}.desktop"
+		sed -E -i -e "s|Exec=/opt/${PN^}/${PN}|Exec=/usr/bin/${PN}|" "usr/share/applications/${PN}.desktop"
 	fi
 	default
 }
 
 src_install() {
-	declare FERDI_HOME=/opt/${_PN}
+	declare FERDI_HOME=/opt/${PN}
 
 	dodir ${FERDI_HOME%/*}
 
 	insinto ${FERDI_HOME}
-	doins -r opt/${_PN^}/*
+	doins -r opt/${PN^}/*
 
 	exeinto ${FERDI_HOME}
 	exeopts -m0755
-	doexe "opt/${_PN^}/${_PN}"
+	doexe "opt/${PN^}/${PN}"
 
-	dosym "${FERDI_HOME}/${_PN}" "/usr/bin/${PN}"
+	dosym "${FERDI_HOME}/${PN}" "/usr/bin/${PN}"
 
-	newmenu usr/share/applications/${_PN}.desktop ${PN}.desktop
+	newmenu usr/share/applications/${PN}.desktop ${PN}.desktop
 
 	for _size in 16 24 32 48 64 96 128 256 512; do
-		newicon -s ${_size} "usr/share/icons/hicolor/${_size}x${_size}/apps/${_PN}.png" "${PN}.png"
+		newicon -s ${_size} "usr/share/icons/hicolor/${_size}x${_size}/apps/${PN}.png" "${PN}.png"
 	done
 
 	# desktop eclass does not support installing 1024x1024 icons
 	insinto /usr/share/icons/hicolor/1024x1024/apps
-	newins "usr/share/icons/hicolor/1024x1024/apps/${_PN}.png" "${PN}.png"
+	newins "usr/share/icons/hicolor/1024x1024/apps/${PN}.png" "${PN}.png"
 
 	# Installing 128x128 icon in /usr/share/pixmaps for legacy DEs
-	newicon "usr/share/icons/hicolor/128x128/apps/${_PN}.png" "${PN}.png"
+	newicon "usr/share/icons/hicolor/128x128/apps/${PN}.png" "${PN}.png"
 
 	insinto /usr/share/licenses/${PN}
 	for _license in 'LICENSE.electron.txt' 'LICENSES.chromium.html'; do
-	doins opt/${_PN^}/$_license
+	doins opt/${PN^}/$_license
 	done
 }
 
