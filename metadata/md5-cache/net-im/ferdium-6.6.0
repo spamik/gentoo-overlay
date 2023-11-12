@@ -1,0 +1,13 @@
+DEFINED_PHASES=install postinst postrm prepare
+DESCRIPTION=Combine your favorite messaging services into one application
+EAPI=8
+HOMEPAGE=https://ferdium.org
+INHERIT=desktop xdg-utils
+IUSE=wayland
+KEYWORDS=-* ~amd64 ~arm ~arm64
+LICENSE=Apache-2.0
+RDEPEND=media-libs/alsa-lib net-dns/c-ares media-video/ffmpeg x11-libs/gtk+:3 dev-python/http-parser dev-libs/libevent net-libs/nghttp2 app-crypt/libsecret x11-libs/libxkbfile dev-libs/libxslt x11-libs/libXScrnSaver x11-libs/libXtst sys-libs/zlib[minizip] dev-libs/nss dev-libs/re2 app-arch/snappy wayland? ( dev-libs/wayland )
+SLOT=0
+SRC_URI=amd64? ( https://github.com/ferdium/ferdium-app/releases/download/v6.6.0/Ferdium-linux-6.6.0-amd64.deb ) arm? ( https://github.com/ferdium/ferdium-app/releases/download/v6.6.0/Ferdium-linux-6.6.0-armv7l.deb ) arm64? ( https://github.com/ferdium/ferdium-app/releases/download/v6.6.0/Ferdium-linux-6.6.0-arm64.deb )
+_eclasses_=desktop	021728fdc1b03b36357dbc89489e0f0d	xdg-utils	baea6080dd821f5562d715887954c9d3
+_md5_=1dce5f3ca2626cb82725e30fb4a36950
