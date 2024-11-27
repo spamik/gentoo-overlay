@@ -10,6 +10,6 @@ LICENSE=Sublime
 RDEPEND=dev-vcs/git dev-libs/glib:2 x11-libs/gtk+:3 x11-libs/libX11 dbus? ( sys-apps/dbus )
 RESTRICT=bindist mirror strip
 SLOT=0
-SRC_URI=amd64? ( https://download.sublimetext.com/sublime_merge_build_2096_x64.tar.xz )
+SRC_URI=amd64? ( https://download.sublimetext.com/sublime_merge_build_2102_x64.tar.xz )
 _eclasses_=desktop	3a72ffe0d8e1dd73af3a1c8c15a59fed	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
 _md5_=21e69649dd0fd61ecab8154a97a3bb61
